@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import ArticleCard from "./ArticleCard"
 
-export default function App() {
+export default function ArticleList() {
   const [articles, setArticles] = useState([])
 
   useEffect(() => {
@@ -10,13 +11,9 @@ export default function App() {
   }, [])
 
   return (
-    <div style={{ padding: 40 }}>
-      {articles.map(a => (
-        <div key={a._id} style={{ marginBottom: 40 }}>
-          <h2>{a.title}</h2>
-          <p>{a.content}</p>
-          {a.references.map(r => <a href={r}>{r}</a>)}
-        </div>
+    <div className="grid">
+      {articles.map(article => (
+        <ArticleCard key={article._id} article={article} />
       ))}
     </div>
   )
